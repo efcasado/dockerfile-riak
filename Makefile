@@ -51,10 +51,12 @@ build-%: ; DKR_IMAGE_VSN="$*-$(GIT_VSN)" DKR_DOCKERFILE="$*" $(MAKE) dkr-build
 run: dkr-run
 
 clean: $(CLEAN_TARGETS)
-clean-%: ; rm -rf $*
+	rm docker.mk
+clean-%:
+	rm -rf $*
 
 info: dkr-info
 
-docker.mk: ; wget $(DOCKERMK_URL)
+docker.mk: ; wget $(DKRMK_VSN_URL)
 
 -include docker.mk
